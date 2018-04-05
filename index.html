@@ -3,12 +3,27 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Crystal Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
+    <!-- reset styling to default values to ensure cross browser compatibility-->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css" />
+    <!-- external styling -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+    <!-- link to external javascript -->
+    <script src="./assets/javascript/game.js"></script>
+    <!-- jQuery library CDN -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   </head>
 <body>
-    
+
+    <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+    <div id="crystals">
+        <img class="crystalImage" src="./assets/images/crystal1.jpg"  alt="crystals">
+    </div>
+
+  
+
+
 </body>
 </html>
