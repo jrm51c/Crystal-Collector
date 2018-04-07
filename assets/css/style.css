@@ -1,9 +1,26 @@
+body    {
+    background-image: url("../images/ep_naturalwhite.png");
+}
 #crystals   {
-    background-color: yellow;
+    
+    background-color: black;
     margin-left: 15px;
+    margin-top: 25px;
+    text-align: center;
 }
 
-.crystalImage   {
+.crystal-image   {
     height: 300px;
     width: 300px; 
+    border: 1px solid black;
+}
+
+#status {
+    height: 300px;
+    width: 500px;
+    background-color: black;
+    margin: 0 auto;
+    text-align: center;
+    font-size: x-large;
+    color: Yellow;
 }

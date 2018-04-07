@@ -6,24 +6,21 @@
     <title>Crystal Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- reset styling to default values to ensure cross browser compatibility-->
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css" />
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css" />-->
     <!-- external styling -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
-    <!-- link to external javascript -->
-    <script src="./assets/javascript/game.js"></script>
     <!-- jQuery library CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   </head>
+    <!-- link to external javascript -->
+    <script src="./assets/javascript/game.js"></script>
+</head>
 <body>
-
-    <h1>Number to Guess: <span id="number-to-guess"></span></h1>
-
-    <div id="crystals">
-        <img class="crystalImage" src="./assets/images/crystal1.jpg"  alt="crystals">
+    <div id="status">
+        <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+        <h1>Total score: <span id="total-score"></span></h1>
+        <h1>Game Status: <span id="game-status"></span></h1>
     </div>
-
-  
-
-
+    <div id="crystals">
+    </div>
 </body>
 </html>
