@@ -5,19 +5,19 @@ $(document).ready(function() {
   var targetNumber = 0;
   // Store player score
   var totalScore = 0;
-
+  var gameOver = false;
   //============================================
-  // Declare functions   
+  // Declare functions
   // Generate a random target number for player to guess
   // Number must be between 19 - 120 Math.floor(Math.random() * max - min + 1)) + min
   // Display number on the page
   function targetNum() {
-    targetNumber = Math.floor(Math.random() * (102) + 19); 
+    targetNumber = Math.floor(Math.random() * (102) + 19);
 
     $("#number-to-guess").text(targetNumber);
   };
   targetNum();
- 
+
   function crystalValues() {
     var crystals = $("#crystals");
     // Variable to hold players cumulative score
@@ -54,38 +54,41 @@ $(document).ready(function() {
 
   // Click event applies to every single crystal on the page. Not just one.
   $(".crystal-image").click(function() {
-  
-    // Determining the crystal's value requires us to extract the value from the data attribute.
-    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-    var crystalValue = ($(this).attr("data-crystalvalue"));
-    crystalValue = parseInt(crystalValue);
-    // We then add the crystalValue to the players total score which is a global variable.
-    // Every click, from every crystal adds to the total score
-    totalScore += crystalValue;
-    // All of the same game win-lose logic applies. So the rest remains unchanged.
-    $("#total-score").text(totalScore);
+      if (!gameOver) {
+          // Determining the crystal's value requires us to extract the value from the data attribute.
+          // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
+          // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
+          // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+          var crystalValue = ($(this).attr("data-crystalvalue"));
+          crystalValue = parseInt(crystalValue);
+          // We then add the crystalValue to the players total score which is a global variable.
+          // Every click, from every crystal adds to the total score
+          totalScore += crystalValue;
+          // All of the same game win-lose logic applies. So the rest remains unchanged.
+          $("#total-score").text(totalScore);
 
-    if (totalScore === targetNumber) {
-      $("#game-status").text("You win!!!!");
-      //wait 5 seconds then  call function
-      setTimeout(playAgain, 3000);
-    }
-    else if (totalScore > targetNumber) {
-      $("#game-status").text("You Lose!!!");
-      //wait 5 seconds then  call function
-      setTimeout(playAgain, 3000);
-    }  
+          if (totalScore === targetNumber) {
+            gameOver = true;
+            $("#game-status").text("You win!!!!");
+            //wait 5 seconds then  call function
+            setTimeout(playAgain, 3000);
+          } else if (totalScore > targetNumber) {
+            gameOver = true;
+            $("#game-status").text("You Lose!!!");
+            //wait 5 seconds then  call function
+            setTimeout(playAgain, 3000);
+          }
+      }
   });
 
   function playAgain()  {
-    var playAgain = confirm("Would you like to play again?");
-    if (playAgain === true) {
-      //set target number to 0 and clear old target number from display 
+    var confirmation = confirm("Would you like to play again?");
+    if (confirmation === true) {
+      //set target number to 0 and clear old target number from display
       targetNumber = 0;
+      gameOver = false;
       $("#number-to-guess").text("");
-      //set total score to 0 and clear total score from display 
+      //set total score to 0 and clear total score from display
       totalScore = 0;
       $("#total-score").text("");
       //clear game status from display
@@ -96,7 +99,12 @@ $(document).ready(function() {
       crystalvalues();
     } else {
       //close window
-      window.close();
+      closeWindow();
+    }
+    /* Firefox workaround */
+    function closeWindow() {
+        window.open('','_parent','');
+        window.close();
     }
   }
 });
